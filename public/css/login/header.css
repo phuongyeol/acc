@@ -1,0 +1,14 @@
+/* Header */
+.header{
+    text-align: center;
+}
+.base-logo{
+    padding: 25px 0 25x 0;
+}
+.header h2{
+    margin-block-end: 10px;
+}
+div.welcome{
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+}

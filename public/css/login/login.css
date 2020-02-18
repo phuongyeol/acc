@@ -1,0 +1,48 @@
+
+@import url("header.css");
+@import url("body.css");
+@import url("footer.css");
+
+/* GENARAL */
+.gray{
+    color: #888;
+}
+.right{
+    float:right;
+}
+.green{
+    color: #2bd14e;
+}
+.blue{
+    color: #2a91d6;
+}
+.a{
+    text-decoration: none;
+    color: #2a91d6;
+}
+/* BACKGROUND */
+body{
+    background-image: url("../../background.png");
+    background-position: right bottom;
+    background-repeat: repeat-x;
+    background-size: 100%;
+    margin:0;
+
+}
+html,body{
+    height: 100%;
+    overflow: hidden;
+}
+.full-height{
+    height: 100%;
+}
+/*LOGIN*/ 
+div#login{
+    width: 550px;
+    padding: 35px;
+    background-color: #fff;
+    position: relative;
+}
+
+
+

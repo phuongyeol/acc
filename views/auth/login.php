@@ -6,6 +6,6 @@
     <title>Login - Base Account</title>
 </head>
 <body>
-    
+    Login page
 </body>
 </html>

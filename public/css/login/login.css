@@ -7,9 +7,6 @@
 .gray{
     color: #888;
 }
-.right{
-    float:right;
-}
 .green{
     color: #2bd14e;
 }
@@ -19,6 +16,9 @@
 .a{
     text-decoration: none;
     color: #2a91d6;
+}
+.right{
+    float:right;
 }
 /* BACKGROUND */
 body{
@@ -36,7 +36,7 @@ html,body{
 .full-height{
     height: 100%;
 }
-/*LOGIN*/ 
+/*FORM*/ 
 div#login{
     width: 550px;
     padding: 35px;

@@ -27,9 +27,8 @@ body{
     background-repeat: repeat-x;
     background-size: 100%;
     margin:0;
-
 }
-html,body{
+html, body{
     height: 100%;
     overflow: hidden;
 }
@@ -37,7 +36,7 @@ html,body{
     height: 100%;
 }
 /*FORM*/ 
-div#login{
+#login{
     width: 550px;
     padding: 35px;
     background-color: #fff;

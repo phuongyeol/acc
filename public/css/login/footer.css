@@ -1,8 +1,8 @@
 /*Login Footer */
-div.footer{
+.footer{
     text-align: center;
 }
-div.title.gray{
+.title.gray{
     padding-top: 2px solid #eee;
 }
 .login-with-app input[type="submit"]{
@@ -16,10 +16,10 @@ div.title.gray{
 .footer div.title{
     border-top: 2px solid #eee;
 }
-div.login-with-app{
+.login-with-app{
     border-bottom: 2px solid #eee;
     padding-bottom: 40px;
 }
-div.login-with-other{
+.login-with-other{
     padding: 20px;
 }

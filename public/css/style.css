@@ -1,0 +1,63 @@
+html, body{
+    height: 100%;
+    overflow: hidden;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 14px;
+}
+
+/* Color */
+.gray{
+    color: #888;
+}
+.green{
+    color: #2bd14e;
+}
+.blue{
+    color: #2a91d6;
+}
+.a{
+    text-decoration: none;
+    color: #2a91d6;
+}
+/* Position */
+.right{
+    float:right;
+}
+.left{
+    float:left;
+}
+
+/* Column count */
+.col2{
+    column-count: 2;
+}
+.col3{
+    column-count: 3;
+}
+.col4{
+    column-count: 4;
+}
+.col5{
+    column-count: 5;
+}
+.col6{
+    column-count: 6;
+}
+.col7{
+    column-count: 7;
+}
+.col8{
+    column-count: 8;
+}
+.col9{
+    column-count: 9;
+}
+.col10{
+    column-count: 10;
+}
+.col11{
+    column-count: 11;
+}
+.col12{
+    column-count: 12;
+}

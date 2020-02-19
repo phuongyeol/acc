@@ -58,7 +58,7 @@
                 <div class="title gray">
                     <p>Or, login  via single sign-on</p>
                 </div>
-                <div class="login-with-app col3">
+                <div class="login-with-app">
                     <input type="submit" value="Login with Google">
                     <input type="submit" value="Login with Microsoft">
                     <input type="submit" value="Login with SAML">

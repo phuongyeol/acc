@@ -24,41 +24,65 @@
             <div class="body">
                 <form action="" method="post">
                     <div class="register-form">
+                        <div class="row form-avatar">
+                        <div class="title"><label for=""><b>Avatar</b></label></div>
+                            <div class="avatar">
+                                <input type="file" name="avatar" id="avatar">
+                            </div>
+                        </div>
                         <div class="row form-username">
-                            <div class="title"><label for=""><b>Username</b></label></div>
+                            <div class="title">
+                                <label for=""><b>Username</b></label>
+                                <span class="red">*</span>
+                            </div>
                             <div class="input">
                                 <input type="text" name="username" id="username" placeholder="Your username">
                             </div>
                         </div>
                         <div class="row form-fullname col2">
                             <div class="first-name">
-                                <div class="title"><label for=""><b>First name</b></label></div>
+                                <div class="title">
+                                    <label for=""><b>First name</b></label>
+                                    <span class="red">*</span>
+                                </div>
                                 <div class="input">
                                     <input type="text" name="first-name" id="first-name" placeholder="Your first name">
                                 </div>
                             </div>
                             <div class="last-name">
-                                <div class="title"><label for=""><b>Last name</b></label></div>
+                                <div class="title"><label for="">
+                                    <b>Last name</b></label>
+                                    <span class="red">*</span>
+                                </div>
                                 <div class="input">
                                     <input type="text" name="last-name" id="last-name" placeholder="Your last name">
                                 </div>
                             </div>
                         </div>
                         <div class="row form-email">
-                            <div class="title"><label for=""><b>Email</b></label></div>
+                            <div class="title">
+                                <label for=""><b>Email</b></label>
+                                <span class="red">*</span>
+                            </div>
                             <div class="input">
                                 <input type="email" name="email" id="email" placeholder="Your email">
                             </div>
                         </div>
                         <div class="row form-password col2">
                             <div class="password">
-                                <div class="title"><label for=""><b>Password</b></label></div>
+                                <div class="title">
+                                    <label for=""><b>Password</b></label>
+                                    <span class="red">*</span>
+                                </div>
                                 <div class="input">
                                     <input type="password" name="password" id="password" placholder="Your password">
                                 </div>
                             </div>
                             <div class="confirm-password">
-                                <div class="title"><label for=""><b>Confirm Password</b></label></div>
+                                <div class="title">
+                                    <label for=""><b>Confirm Password</b></label>
+                                    <span class="red">*</span>
+                                </div>
                                 <div class="input">
                                     <input type="password" name="confirm-password" id="comfirm-password" placeholder="Confirm your password">
                                 </div>
@@ -85,7 +109,7 @@
             <!-- Register footer -->
             <div class="footer">
                 <div class="register">
-                    <a href="login.php" class="a">Login with regular access?</a>
+                    <p><a href="login.php" class="a">Login with regular access?</a></p>
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@
     <title>Login - Base Account</title>
     <link rel="shortcut icon" href="public/base-icon.png" type="image/x-icon">
     <link rel="stylesheet" href="public/css/style.css">
-    <link rel="stylesheet" href="public/css/login/login.css">
+    <link rel="stylesheet" href="public/css/login.css">
 </head>
 <body>
     <div id="container" class="full-height">

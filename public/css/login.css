@@ -5,7 +5,7 @@
 /* BACKGROUND */
 body{
     position: relative;
-    background-image: url("../../background.png");
+    background-image: url("../background.png");
     background-position: right bottom;
     background-repeat: repeat-x;
     background-size: 100%;
@@ -42,9 +42,7 @@ body{
 .row{
     margin-bottom:10px;
 }
-.col2{
-    column-count: 2;
-}
+
 .title{
     padding-bottom: 5px;
 }

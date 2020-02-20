@@ -53,7 +53,7 @@
             </div>
             <!-- Register body -->
             <div class="body">
-                <form action="" name="register" method="post">
+                <form action="?act=register" name="register" method="post">
                     <div class="register-form">
                         <div class="row form-avatar">
                         <div class="title"><label for=""><b>Avatar</b></label></div>
@@ -132,7 +132,7 @@
                             </div>
                         </div>
                         <div class="row form-submit">
-                            <input type="submit" name="create-account" value="Create a new account">
+                            <input type="submit" name="register" value="Create a new account">
                         </div>
                     </div>
                 </form>

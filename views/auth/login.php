@@ -19,7 +19,7 @@
             </div>
             <!-- Login body -->
             <div class="body">
-                <form action="" method="post">
+                <form name="form_login" action="?act=login" method="post">
                     <div class="login-form">
                         <div class="form-email row">
                             <div class="title">
@@ -45,6 +45,12 @@
                         <div class="form-submit row">
                             <input type="submit" name="login" value="Login to start working">
                         </div>
+                        <!-- Message error -->
+                        <div class="message">
+                            <?php if($msg != "") { ?>
+                            <span class="red">Error: <?php echo @$msg;?></span>
+                            <?php } ?>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -65,6 +71,7 @@
                     <a href="views/auth/register.php" class="a">Create a new account?</a>
                 </div>
             </div>
+            
         </div>
     </div> 
 </body>

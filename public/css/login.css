@@ -3,7 +3,7 @@
 /* BACKGROUND */
 body{
     position: relative;
-    background-image: url("../background.png");
+    background-image: url("../images/background.png");
     background-position: right bottom;
     background-repeat: repeat-x;
     background-size: 100%;

@@ -38,7 +38,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Base Account</title>
-    <link rel="shortcut icon" href="../../public/base-icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../public/images/base-icon.png" type="image/x-icon">
     <link rel="stylesheet" href="../../public/css/style.css">
     <link rel="stylesheet" href="../../public/css/login.css">
 </head>
@@ -47,7 +47,7 @@
         <div id="register">
             <!-- Register header -->
             <div class="header">
-                <div class="base-logo"><img src="../../public/logo.full.png" alt=""></div>
+                <div class="base-logo"><img src="../../public/images/logo.full.png" alt=""></div>
                 <div class=""><h2>Sign Up</h2></div>
                 <div class="welcome gray">Welcome. Sign up to start working.</div>
             </div>

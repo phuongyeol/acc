@@ -42,8 +42,7 @@
 
         public function register(){
             if (isset($_POST['register'])) {
-                if($_POST['username'] == "" || $_POST['first-name'] == "" || $_POST['last-name'] == "" || $_POST['email'] == "" || $_POST['password'] == "" 
-                || $_POST['confirm-password'] == "") {
+                if($_POST['username'] == "" || $_POST['first-name'] == "" || $_POST['last-name'] == "" || $_POST['email'] == "" || $_POST['password'] == "" || $_POST['confirm-password'] == "") {
                     return "empty feild";
                 } elseif(!preg_match("/^[a-zA-Z]*$/", $_POST['first-name']) || !preg_match("/^[a-zA-Z]*$/", $_POST['last-name'])) {
                     return "invalid fullname";
@@ -79,8 +78,7 @@
                     $company_name = $_POST['company_name'];
 
                     try {
-                        $stmt = $this->author_conn->prepare("INSET INTO users (username, first_name, last_name, email, password, job_title, company_name)
-                                                        values (:username, :first, :last, :email:, :pass, :job, :company)");
+                        $stmt = $this->author_conn->prepare("INSET INTO users (username, first_name, last_name, email, password, job_title, company_name) values (:username, :first, :last, :email:, :pass, :job, :company)");
                         $data = [ $username, $first_name, $last_name, $email, $password, $job_title, $company_name ];
                         $result = $stmt->execute($data);
                         // Result

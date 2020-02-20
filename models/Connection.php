@@ -1,25 +1,25 @@
 <?php
     class Connection
     {
-        var $conn;
-        function __construct(){
-            // Default date
-            date_default_timezone_set('Asia/Ho_Chi_Minh');
-
-            // Database default setting
-            define('DB_SERVER', 'localhost');
-            define('DB_USERNAME', 'root');
-            define('DB_PASSWORD', '');
-            define('DB_NAME', 'base_account');
-
+        public $conn;
+        
+        public function __construct(){
             // Connect to MySQL database
-            $this->conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-            $this->conn->set_charset("utf8");
+            $this->conn = new PDO("mysql:host=localhost;dbname=base_account", "root", "");
+        }
 
-            // Check connection
-            if ($this->conn->connect_error) {
-                die("Connection failed: " . $this->conn->connect_error);
+        public function requiredValidation($feild){
+            $count = 0;
+            foreach ($feild as $key => $value) {
+                if (empty($value)) {
+                    $count++;
+                    $this->error .= "<p>" . $key . " is required</p>";
+                }
+            }
+            if ($count == 0) {
+                return true;
             }
         }
+        
     }
 ?>

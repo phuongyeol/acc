@@ -1,22 +1,33 @@
 <?php
-    include_once('models/connection.php');
+    include_once('models/Connection.php');
 
     class User
     {
         var $user_conn;
 
-        function __construct(){
+        public function __construct(){
             $user_conn = new Connection();
             $this->user_conn = $user_conn->conn;
         }
-        function find($id){
+
+        public function login(){
+            if(isset($_POST["email"]) && isset($_POST["password"])){
+                if($_POST["email"]=="admin@gmail.com" && $_POST["password"]=="admin"){
+                    return "login";
+                }else{
+                    return "invalid user";
+                }
+            }
+        }
+
+        public function find($id){
             $query = "SELECT * FROM users WHERE id = " . $id;
             $result = $this->user_conn->query($jquery->fectch_assoce());
 
             return $result;
         }
 
-        function insert($data){
+        public function insert($data){
             // Get data
             $username = trim($_POST['username']);
             $first_name = trim($_POST['first-name']);

@@ -68,7 +68,7 @@
                     <a href="#" class="a">Login with Guest/Client access?</a>
                 </div>
                 <div class="register">
-                    <a href="views/auth/register.php" class="a">Create a new account?</a>
+                    <a href="register.php" class="a">Create a new account?</a>
                 </div>
             </div>
             

@@ -14,7 +14,7 @@
 
     switch ($act) {
         case "register":
-            $author->insert();
+            $author->register();
             break;
         case "logout":
             $author->logout();

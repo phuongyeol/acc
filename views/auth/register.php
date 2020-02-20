@@ -131,6 +131,12 @@
                                 <input type="text" name="company-name" id="company-name" placeholder="Your company name">
                             </div>
                         </div>
+                        <!-- Message error -->
+                        <div class="message">
+                            <?php if($msg != "") { ?>
+                                <span class="red">Error: <?php echo @$msg;?></span>
+                            <?php } ?>
+                        </div>
                         <div class="row form-submit">
                             <input type="submit" name="register" value="Create a new account">
                         </div>
@@ -148,9 +154,6 @@
 
     <footer>
         <script src="../../public/js/login.js"></script>
-        <script type="text/javascript">
-
-        </script>
     </footer>
 </body>
 </html>

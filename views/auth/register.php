@@ -1,37 +1,3 @@
-<?php
-    // Include config file
-    require_once "../../config.php";
-
-    // session start
-    session_start();
-
-    $username = $first_name = $last_name = "";
-    $email = $job_title = $company_name = "";
-    $password = $confirm_password = "";
-
-    if (isset($_POST['create-account'])) {
-        // Get data
-        $username = trim($_POST['username']);
-        $first_name = trim($_POST['first-name']);
-        $last_name = trim($_POST['last-name']);
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $confirm_password = $_POST['confirm-password'];
-        $job_title = trim($_POST['job-title']); 
-        $company_name = trim($_POST['company-name']);
-
-        // Validation
-        if ($username == null || $first_name == null || $last_name == null || $email == null || $password == null || 
-        $confirm_password == null) {
-            die ("Invalid or empty a require feild. Please try again.");
-        } elseif ($password !== $confirm_password) {
-            die ("Password must match. Please try again.");
-        } elseif (strlen($password) < 8) {
-            die ("Password mus have at least 8 characters.");
-        } 
-
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

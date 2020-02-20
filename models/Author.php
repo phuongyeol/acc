@@ -9,7 +9,7 @@
             $author_conn = new Connection;
             $this->author_conn = $author_conn->conn;
         }
-        
+
         public function login(){
             if (isset($_POST['login'])) {
                 if($_POST['email'] == "" || $_POST['password'] == ""){

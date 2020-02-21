@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Base Account</title>
-    <link rel="shortcut icon" href="../../public/images/base-icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="../../public/css/style.css">
-    <link rel="stylesheet" href="../../public/css/login.css">
+    <link rel="shortcut icon" href="public/images/base-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="public/css/login.css">
 </head>
 <body>
     <div id="container" class="full-height">
         <div id="register">
             <!-- Register header -->
             <div class="header">
-                <div class="base-logo"><img src="../../public/images/logo.full.png" alt=""></div>
+                <div class="base-logo"><img src="public/images/logo.full.png" alt=""></div>
                 <div class=""><h2>Sign Up</h2></div>
                 <div class="welcome gray">Welcome. Sign up to start working.</div>
             </div>
@@ -99,7 +99,7 @@
                         </div>
                         <!-- Message error -->
                         <div class="message">
-                            <?php if($msg != "") { ?>
+                            <?php if( isset($msg) && $msg != "") { ?>
                                 <span class="red">Error: <?php echo @$msg;?></span>
                             <?php } ?>
                         </div>
@@ -112,14 +112,14 @@
             <!-- Register footer -->
             <div class="footer">
                 <div class="register">
-                    <p><a href="../../views/auth/login.php" class="a">Login with regular access?</a></p>
+                    <p><a href="?view=login" class="a">Login with regular access?</a></p>
                 </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <script src="../../public/js/login.js"></script>
+        <script src="public/js/login.js"></script>
     </footer>
 </body>
 </html>

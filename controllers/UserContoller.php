@@ -7,7 +7,9 @@
         public function __construct(){
             $this->user = new User();
         }
-
+        public function index(){
+            include_once 'views/users/account.php';
+        }
         public function register(){
             $result = $this->user->register();
             if ($result == "success") {

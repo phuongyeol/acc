@@ -15,7 +15,13 @@
             <div class="header">
                 <div class="base-logo"><img src="public/images/logo.full.png" alt=""></div>
                 <div class=""><h2>Login</h2></div>
-                <div class="welcome gray">Welcome back. Login to start working.</div>
+                <div class="welcome gray">
+                    <?php if(isset($notice_success) && $notice_success != "") { ?>
+                        <span class="green"><?php echo @$notice_success;?></span>
+                    <?php } else { ?>
+                        Welcome back. Login to start working.
+                    <?php } ?>
+                </div>
             </div>
             <!-- Login body -->
             <div class="body">
@@ -47,7 +53,7 @@
                         </div>
                         <!-- Message error -->
                         <div class="message">
-                            <?php if($msg != "") { ?>
+                            <?php if(isset($msg) && $msg != "") { ?>
                             <span class="red">Error: <?php echo @$msg;?></span>
                             <?php } ?>
                         </div>
@@ -68,7 +74,7 @@
                     <a href="#" class="a">Login with Guest/Client access?</a>
                 </div>
                 <div class="register">
-                    <a href="views/auth/register.php" class="a">Create a new account?</a>
+                    <a href="?view=register" class="a">Create a new account?</a>
                 </div>
             </div>
         </div>

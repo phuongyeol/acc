@@ -7,10 +7,16 @@
         public function __construct(){
             $this->author = new Author();
         }
-
+        public function loginView(){
+            include_once 'views/auth/login.php';
+        }
+        public function registerVIew(){
+            include_once 'views/auth/register.php';
+        }
         public function login(){
             $result = $this->author->login();
             if ($result == "accept") {
+                // header('Location: ?view=account');
                 include "views/users/account.php";
             } else {
                 $msg = "";
@@ -19,27 +25,33 @@
                 } elseif ($result == 'invalid email'){
                     $msg = "Email special characters not allowed";
                 } elseif ($result == 'invalid user') {
-                    $msg = "Invalid email and password. Plese try again!";
+                    $msg = "Email or password is incorrect. Plese try again!";
                 }
                 // setcookie('msg', $msg);
                 include "views/auth/login.php";
             }
         }
+        
         public function register(){
             $result = $this->author->register();
             if ($result == "success") {
+                // include_once "views/auth/login.php";
+                $notice_success = "Registration successfully completed! Login to start working.";
                 include "views/auth/login.php";
+                // header('Location: ?view=login');
             } else {
                 $msg = "";
 
                 if ($result == 'empty feild') {
                     $msg = "Empty email or password. Please try again!";
                 } elseif ($result == 'invalid fullname'){
-                    $msg = "Fist name and last name mustn't have special characters. Please tray again.";
-                } elseif ($result == 'nvalid email') {
-                    $msg = "Email special characters not allowed. Please tray again.";
+                    $msg = "Fist name and last name mustn't have special characters. Please try again.";
+                } elseif ($result == 'invalid email') {
+                    $msg = "Email special characters not allowed. Please try again.";
                 } elseif ($result == 'password not match') {
-                    $msg = "Password and confirm password not match. Please tray again.";
+                    $msg = "Password and confirm password not match. Please try again.";
+                } elseif ($result == 'invalid password') {
+                    $msg = "Password must have at least 8 characters. Please try again.";
                 } elseif ($result == 'already exists') {
                     $msg = "Username or Email already exists. Please try again!";
                 }

@@ -42,15 +42,23 @@
 
         public function register(){
             if (isset($_POST['register'])) {
-                if($_POST['username'] == "" || $_POST['first-name'] == "" || $_POST['last-name'] == "" || $_POST['email'] == "" || $_POST['password'] == "" || $_POST['confirm-password'] == "") {
+                $flag = true;
+                if ($_POST['username'] == "" || $_POST['first-name'] == "" || $_POST['last-name'] == "" || $_POST['email'] == "" || $_POST['password'] == "" || $_POST['confirm-password'] == "") {
+                    $flag = false;
                     return "empty feild";
-                } elseif(!preg_match("/^[a-zA-Z]*$/", $_POST['first-name']) || !preg_match("/^[a-zA-Z]*$/", $_POST['last-name'])) {
+                } elseif (!preg_match("/^[a-zA-Z]*$/", $_POST['first-name']) || !preg_match("/^[a-zA-Z]*$/", $_POST['last-name'])) {
+                    $flag = false;
                     return "invalid fullname";
-                } elseif(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i", $_POST['email'])) {
+                } elseif (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i", $_POST['email'])) {
+                    $flag = false;
                     return "invalid email";
-                } elseif($_POST['password'] !== $_POST['confirm-password']) {
+                } elseif ($_POST['password'] !== $_POST['confirm-password']) {
+                    $flag = false;
                     return "password not match";
-                } elseif(isset($_POST['username']) || isset($_POST['email'])) {
+                } elseif (strlen($_POST['password']) < 8) {
+                    $flag = false;
+                    return "invalid password";
+                } else {
                     $username = trim($_POST['username']);
                     $email = trim($_POST['email']);
                     try {
@@ -60,26 +68,28 @@
                         $stmt->execute();
 
                         $count = $stmt->rowCount();
-                        $row = $stmt->fetch(PDO::FECTH_ASSOC);
+                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
                         if ($count > 0 && !empty($row)) {
+                            $flag = false;
                             return "already exists";
                         }
                     } catch(PDOException $e) {
                         echo "Error: " . $e->getMessage();
                     }
-                } else {
+                } 
+                if ($flag) {
                     $username = trim($_POST['username']);
                     $last_name = trim($_POST['last-name']);
                     $first_name = trim($_POST['first-name']);
                     $email = trim($_POST['email']);
                     $password = trim($_POST['password']);
-                    $job_title = $_POST['job_title'];
-                    $company_name = $_POST['company_name'];
+                    $job_title = isset($_POST['job_title'])?$_POST['job_title']:"";
+                    $company_name = isset($_POST['company_name'])?$_POST['company_name']:"";
 
                     try {
-                        $stmt = $this->author_conn->prepare("INSET INTO users (username, first_name, last_name, email, password, job_title, company_name) values (:username, :first, :last, :email:, :pass, :job, :company)");
-                        $data = [ $username, $first_name, $last_name, $email, $password, $job_title, $company_name ];
+                        $stmt = $this->author_conn->prepare("INSERT INTO users (username, first_name, last_name, email, password, job_title, company_name) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                        $data = [ $username, $first_name, $last_name, $email, md5($password), $job_title, $company_name ];
                         $result = $stmt->execute($data);
                         // Result
                         if ($result) {

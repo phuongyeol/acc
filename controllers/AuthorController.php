@@ -1,5 +1,5 @@
 <?php
-    include_once("models/Author.php");
+    include_once PROJECT_ROOT_PATH . "/models/Author.php";
 
     class AuthorController
     {
@@ -8,16 +8,17 @@
             $this->author = new Author();
         }
         public function loginView(){
-            include_once 'views/auth/login.php';
+            include_once "views/auth/login.php";
         }
         public function registerVIew(){
-            include_once 'views/auth/register.php';
+            include_once "views/auth/register.php";
         }
         public function login(){
             $result = $this->author->login();
             if ($result == "accept") {
                 // header('Location: ?view=account');
-                include "views/users/account.php";
+                header('Location: ?mod=account&act=index');
+                // include "views/users/profile.php";
             } else {
                 $msg = "";
                 if ($result == 'empty feild') {
@@ -32,7 +33,7 @@
             }
         }
         
-        public function register(){
+        public function store(){
             $result = $this->author->register();
             if ($result == "success") {
                 // include_once "views/auth/login.php";

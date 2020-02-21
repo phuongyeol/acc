@@ -1,5 +1,5 @@
 <?php
-    include_once('models/Connection.php');
+    include_once "models/Connection.php";
 
     class Author
     {
@@ -29,7 +29,12 @@
                         $row   = $stmt->fetch(PDO::FETCH_ASSOC);
 
                         if ($count == 1 && !empty($row)) {
-                            return "accept";
+                            $_SESSION['isLogin'] = true;
+                            // if (password_verify($password, $row['password'])) {
+                                return "accept";
+                            // } else {
+                                // return "invalid user";
+                            // }
                         } else {
                             return "invalid user";
                         }
@@ -83,13 +88,12 @@
                     $last_name = trim($_POST['last-name']);
                     $first_name = trim($_POST['first-name']);
                     $email = trim($_POST['email']);
-                    $password = trim($_POST['password']);
+                    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
                     $job_title = isset($_POST['job_title'])?$_POST['job_title']:"";
                     $company_name = isset($_POST['company_name'])?$_POST['company_name']:"";
-
                     try {
                         $stmt = $this->author_conn->prepare("INSERT INTO users (username, first_name, last_name, email, password, job_title, company_name) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                        $data = [ $username, $first_name, $last_name, $email, md5($password), $job_title, $company_name ];
+                        $data = [ $username, $first_name, $last_name, $email, $password, $job_title, $company_name ];
                         $result = $stmt->execute($data);
                         // Result
                         if ($result) {

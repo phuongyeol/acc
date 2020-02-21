@@ -39,7 +39,7 @@
                 $msg = "";
 
                 if ($result == "empty feild") {
-                    $msg = "Empty email or password. Please try again!";
+                    $msg = "Empty some required feilds. Please try again!";
                 } elseif ($result == "invalid fullname") {
                     $msg = "Fist name and last name mustn't have special characters. Please try again.";
                 } elseif ($result == "invalid email") {

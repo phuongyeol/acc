@@ -27,10 +27,9 @@
 
                         $count = $stmt->rowCount();
                         $row   = $stmt->fetch(PDO::FETCH_ASSOC);
-
                         if ($count == 1 && !empty($row)) {
-                            $_SESSION['isLogin'] = true;
                             // if (password_verify($password, $row['password'])) {
+                                $_SESSION['isLogin'] = true;
                                 return "accept";
                             // } else {
                                 // return "invalid user";
@@ -51,7 +50,7 @@
                 if ($_POST['username'] == "" || $_POST['first-name'] == "" || $_POST['last-name'] == "" || $_POST['email'] == "" || $_POST['password'] == "" || $_POST['confirm-password'] == "") {
                     $flag = false;
                     return "empty feild";
-                } elseif (!preg_match("/^[a-zA-Z]*$/", $_POST['first-name']) || !preg_match("/^[a-zA-Z]*$/", $_POST['last-name'])) {
+                } elseif (!preg_match("/^[a-zA-Z]*$/", trim($_POST['first-name'])) || !preg_match("/^[a-zA-Z]*$/", trim($_POST['last-name']))) {
                     $flag = false;
                     return "invalid fullname";
                 } elseif (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i", $_POST['email'])) {

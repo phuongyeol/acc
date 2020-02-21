@@ -8,6 +8,7 @@
             $this->user = new User();
         }
         public function index(){
+            // $profile = $this->user->findByEmail();
             include PROJECT_ROOT_PATH . "/views/users/profile.php";
         }
         public function logout(){
@@ -21,15 +22,15 @@
             } else {
                 $msg = "";
 
-                if ($result == 'empty feild') {
+                if ($result == "empty feild") {
                     $msg = "Empty email or password. Please try again!";
-                } elseif ($result == 'invalid fullname'){
+                } elseif ($result == "invalid fullname") {
                     $msg = "Fist name and last name mustn't have special characters. Please tray again.";
-                } elseif ($result == 'nvalid email') {
+                } elseif ($result == "invalid email") {
                     $msg = "Email special characters not allowed. Please tray again.";
-                } elseif ($result == 'password not match') {
+                } elseif ($result == "password not match") {
                     $msg = "Password and confirm password not match. Please tray again.";
-                } elseif ($result == 'already exists') {
+                } elseif ($result == "already exists") {
                     $msg = "Username or Email already exists. Please try again!";
                 }
 

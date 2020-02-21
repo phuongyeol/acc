@@ -19,7 +19,7 @@
             </div>
             <!-- Register body -->
             <div class="body">
-                <form action="?act=register" name="register" method="post">
+                <form action="?mod=user&act=register" name="register" method="POST">
                     <div class="register-form">
                         <div class="row form-avatar">
                         <div class="title"><label for=""><b>Avatar</b></label></div>

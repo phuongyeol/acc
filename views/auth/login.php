@@ -25,7 +25,7 @@
             </div>
             <!-- Login body -->
             <div class="body">
-                <form name="form_login" action="?act=login" method="post">
+                <form name="form_login" action="?act=author" method="POST">
                     <div class="login-form">
                         <div class="form-email row">
                             <div class="title">

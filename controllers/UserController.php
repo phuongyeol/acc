@@ -1,5 +1,5 @@
 <?php
-    include_once("models/User.php");
+    include_once PROJECT_ROOT_PATH . "/models/User.php";
 
     class UserController
     {
@@ -8,7 +8,11 @@
             $this->user = new User();
         }
         public function index(){
-            include_once 'views/users/account.php';
+            include PROJECT_ROOT_PATH . "/views/users/profile.php";
+        }
+        public function logout(){
+            session_destroy();
+            header('Location: ?act=login');
         }
         public function register(){
             $result = $this->user->register();

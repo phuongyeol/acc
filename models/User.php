@@ -1,5 +1,5 @@
 <?php
-    include_once("models/Connection.php");
+    include_once "models/Connection.php";
 
     class User
     {

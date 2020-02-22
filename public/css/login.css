@@ -1,6 +1,10 @@
 /* LOGIN AND REGISTER STYLE CSS */
 
 /* BACKGROUND */
+html, body{
+    height: 100%;
+    overflow: hidden;
+}
 body{
     position: relative;
     background-image: url("../images/background.png");

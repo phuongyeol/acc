@@ -1,22 +1,60 @@
 /* LEFT BAR STYLE */
-a{
+a {
     text-decoration: none;
-    color: #888;
 }
 .left-bar{
     height: 100%;
     width: 100px;
+    background-color: #302725;
     position: fixed;
     z-index:1;
     top: 0;
     left:0;
-    background-color: #302725;
     overflow-x: hidden;
     padding: 5px;
+    text-align: center;
+}
+.left-bar a{
+    color: #888;
+}
+.lbar-row{
+    height: 80px;
+}
+.lbar-avatar img{
+    width: 50px;
+    border-radius: 50%;
+}
+.lbar-icon{
+    color: #888;
+}
+.lbar-icon{
+    font-size: 30px;
+}
+.lbar-icon i:hover {
+    color: #f1f1f1;
+}
+.lbar-title a:hover {
+    color: #f1f1f1;
 }
 
-.left-bar .row{
-    height: 100px;
-    width: 200%;
-
+/* CONTAINER */
+.container{
+    margin-left: 100px;
+    padding: 10px 10px;
+}
+/* RIGHT BAR */
+.right-bar{
+    height: 100%;
+    width: 100px;
+    background-color: #999;
+    position: fixed;
+    z-index:1;
+    top: 0;
+    right:0;
+    overflow-x: hidden;
+    padding: 5px;
+    text-align: center;
+}
+.right-bar a{
+    color: black;
 }

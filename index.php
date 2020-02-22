@@ -1,17 +1,16 @@
 <?php
-    define('PROJECT_ROOT_PATH', __DIR__);
-    include_once PROJECT_ROOT_PATH . "/controllers/AuthorController.php";
-    include_once PROJECT_ROOT_PATH . "/controllers/UserController.php";
-    $author = new AuthorController();
-    $user = new UserController();
-
     // Default date
     date_default_timezone_set("Asia/Ho_Chi_Minh");
 
     // Start session
     session_start();
-    // session_destroy();
-    // Index
+
+    define('PROJECT_ROOT_PATH', __DIR__);
+    include_once PROJECT_ROOT_PATH . "/controllers/AuthorController.php";
+    include_once PROJECT_ROOT_PATH . "/controllers/UserController.php";
+
+    $author = new AuthorController();
+    $user = new UserController();
 
     if (isset($_SESSION['isLogin'])) {
         if (isset($_GET['mod'])) {

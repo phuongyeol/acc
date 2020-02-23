@@ -21,12 +21,6 @@
             <div class="body">
                 <form action="?mod=user&act=register" name="register" method="POST">
                     <div class="register-form">
-                        <div class="row form-avatar">
-                        <div class="title"><label for=""><b>Avatar</b></label></div>
-                            <div class="avatar">
-                                <input type="file" name="avatar" id="avatar">
-                            </div>
-                        </div>
                         <div class="row form-username">
                             <div class="title">
                                 <label for=""><b>Username</b></label>

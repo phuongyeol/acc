@@ -74,7 +74,7 @@
         }
         switch ($act) {
             case 'register':
-                $author->store();
+                $author->register();
                 break;
             default:
                 $author->login();

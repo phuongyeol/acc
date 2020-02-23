@@ -16,7 +16,7 @@
         public function login(){
             $result = $this->author->login();
             if ($result == "accept") {
-                header('Location: ?mod=account&act=index');
+                header('Location: ?mod=account&act=profile');
             } else {
                 $msg = "";
                 if ($result == "empty feild") {

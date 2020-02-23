@@ -21,13 +21,13 @@
         if (isset($_GET['act'])) {
             $act = $_GET['act'];
         } else {
-            $act = 'index';
+            $act = 'profile';
         }
 
         switch ($mod) {
             case 'account':
                 switch ($act) {
-                    case 'index':
+                    case 'profile':
                         $user->index();
                         break;
                     case 'logout':

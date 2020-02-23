@@ -4,7 +4,7 @@ a {
 }
 .left-bar{
     height: 100%;
-    width: 100px;
+    width: 80px;
     background-color: #302725;
     position: fixed;
     z-index:1;
@@ -13,22 +13,23 @@ a {
     overflow-x: hidden;
     padding: 5px;
     text-align: center;
+    font-size: 12px;
 }
 .left-bar a{
     color: #888;
 }
 .lbar-row{
-    height: 80px;
+    padding: 10px 0;
 }
 .lbar-avatar img{
-    width: 50px;
+    width: 30px;
     border-radius: 50%;
 }
 .lbar-icon{
     color: #888;
 }
 .lbar-icon{
-    font-size: 30px;
+    font-size: 20px;
 }
 .lbar-icon i:hover {
     color: #f1f1f1;
@@ -36,25 +37,152 @@ a {
 .lbar-title a:hover {
     color: #f1f1f1;
 }
-
-/* CONTAINER */
-.container{
-    margin-left: 100px;
-    padding: 10px 10px;
+.lbar-logout{
+    margin-top: 400px;
 }
 /* RIGHT BAR */
 .right-bar{
     height: 100%;
-    width: 100px;
-    background-color: #999;
+    width: 270px;
+    background-color: #f6f6f6;
     position: fixed;
     z-index:1;
     top: 0;
     right:0;
     overflow-x: hidden;
-    padding: 5px;
-    text-align: center;
+    padding: 5px 20px;
 }
-.right-bar a{
-    color: black;
+
+/* RBAR TOP */
+.rbar-top{
+    height: 40px;
+    padding: 13px 0;
+}
+.top-name{
+    font-size: 22px;
+}
+.top-subname{
+    color: #999;
+}
+/* RBAR CONTENT */
+.rbar-menu{
+    border-top: 1px solid #eee;
+    padding: 10px 0;
+}
+.rbar-row{
+    padding: 8px 0;
+}
+.rbar-title{
+    color: #999;
+    padding: 10px 0;
+    font-size: 14px;
+}
+.rbar-icon{
+    color: #aaa;
+    font-size: 16px;
+    display: inline;
+    margin-right: 5px;
+}
+.rbar-act{
+    color: #555;
+    display: inline;
+}
+
+/* CONTAINER */
+.container{
+    margin-left: 80px;
+    margin-right: 300px;
+    padding: 10px 10px;
+}
+
+/* Container Top */
+.container-top{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+.top-icon{
+    font-size: 30px;
+    float: left;
+    padding: 5px 20px;
+}
+.top-act{
+    position: absolute;
+    top: 20px;
+    right: 320px;
+    background-color: #C95353;
+    color: #fff;
+    font-size: 15px;
+    width: 170px;
+    padding: 10px 5px;
+    border-radius: 4px;
+}
+.top-account{
+    color: #ccc;
+}
+.container-body{
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Container body > Body info */
+.info-avatar img{
+    border-radius: 50%;
+    width: 100px;
+}
+.info-avatar{
+    position: absolute;
+}
+.info-detail{
+    margin-left: 120px;
+}
+.info-name{
+    font-size: 26px;
+    padding: 8px 0;
+}
+.info-position{
+    font-size: 16px;
+    color: #aaa;
+    padding: 8px 0;
+}
+.info-contact{
+    color: #666;
+    padding: 5px 0;
+}
+
+/* Container Body > body-detail */
+.list{
+    padding: 20px 0;
+}
+.list-title{
+    color: #aaa;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+.list-row{
+    padding: 10px 0;
+    border-bottom: 1px dotted #ddd;
+}
+.row-name{
+    font-size: 18px;
+}
+.row-name, .row-info{
+    padding: 5px 0;
+}
+.contacts .row-name{
+    color: #888;
+    position: absolute;
+    max-width: 150px;
+    overflow: hidden;
+    font-size: 14px;
+}
+.contacts .row-info{
+    color: #d85743;
+    margin-left: 150px;
+}
+.groups .row-name, .dreports .row-name{
+    color: #d85743;
+}
+.groups .row-info, .dreports .row-info{
+    color: #999;
 }

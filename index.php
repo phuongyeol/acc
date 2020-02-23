@@ -12,7 +12,7 @@
     $author = new AuthorController();
     $user = new UserController();
 
-    if (isset($_SESSION['isLogin'])) {
+    if (isset($_SESSION['is_login'])) {
         if (isset($_GET['mod'])) {
             $mod = $_GET['mod'];
         } else {
@@ -28,10 +28,10 @@
             case 'account':
                 switch ($act) {
                     case 'profile':
-                        $user->index();
+                        $author->index();
                         break;
                     case 'logout':
-                        $user->logout();
+                        $author->logout();
                         break;
                     default:
                         break;
@@ -62,10 +62,10 @@
             $view = $_GET['view'];
             switch ($view) {
                 case 'register':
-                    $author->registerView();
+                    include_once "views/auth/register.php";
                     break;
                 case 'login':
-                    $author->loginView();
+                    include_once "views/auth/login.php";
                     break;
                 
                 default:
@@ -76,8 +76,10 @@
             case 'register':
                 $author->register();
                 break;
-            default:
+            case 'author':
                 $author->login();
+                break;
+            default:
                 break;
         }
     }

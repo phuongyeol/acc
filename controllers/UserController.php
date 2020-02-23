@@ -7,13 +7,5 @@
         public function __construct(){
             $this->user = new User();
         }
-        public function index(){
-            // $profile = $this->user->findByEmail();
-            include PROJECT_ROOT_PATH . "/views/users/profile.php";
-        }
-        public function logout(){
-            session_destroy();
-            header('Location: ?act=login');
-        }
     }
 ?>

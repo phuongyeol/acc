@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+    <?php $profile = $_SESSION['user_login'] ?>
     <!-- LEFT BAR -->
     <div class="left-bar">
         <div class="lbar">
@@ -49,20 +50,28 @@
             <div class="top-icon"><i class="fa fa-arrow-left" aria-hidden="true"></i></div>
             <div class="top-title">
                 <div class="top-account">TÀI KHOẢN</div>
-                <div class="top-name">Trần Thị Phương</div>
+                <div class="top-name"><?php echo $profile['last_name'] . ' ' . $profile['first_name'] ?></div>
             </div>
             <div class="top-act">
                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
                 &nbsp; Chỉnh sửa tài khoản
             </div>
         </div>
+        
         <div class="container-body">
             <div class="body-info">
                 <div class="info-avatar"><img src="public/images/avatar_default.png" alt=""></div>
                 <div class="info-detail">
-                    <div class="info-name">Trần Thị Phương</div>
-                    <div class="info-position">PHP Fullstack Developer</div>
-                    <div class="info-contact">Địa chỉ email</div>
+                    <div class="info-name"><?php echo $profile['last_name'] . ' ' . $profile['first_name'] ?></div>
+                    <div class="info-position">
+                        <?php echo $profile['job_title']!=''?$profile['job_title']:'(Không có)'; ?> 
+                        &nbsp; - &nbsp; 
+                        <?php echo $profile['company_name']!=''?$profile['company_name']:'(Không có)'; ?>
+                    </div>
+                    <div class="info-contact">
+                        <div class="info-title">Địa chỉ email</div>
+                        <div class="info-detail"><?php echo $profile['email']; ?></div>
+                    </div>
                     <div class="info-contact">Số điện thoại</div>
                 </div>
             </div>
@@ -127,9 +136,9 @@
     <!-- RIGHT BAR -->
     <div class="right-bar">
         <div class="rbar-top">
-            <div class="top-name">Trần Thị Phương</div>
+            <div class="top-name"><?php echo $profile['last_name'] . ' ' . $profile['first_name'] ?></div>
             <div class="top-subname">
-                @phuongtran &nbsp;·&nbsp; phuong.tran@base.vn
+                <?php echo $profile['username']; ?> &nbsp;·&nbsp; <?php echo $profile['email']; ?>
             </div>
         </div>
         <div class="rbar-menu">

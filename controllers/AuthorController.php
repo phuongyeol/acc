@@ -4,15 +4,15 @@
     class AuthorController
     {
         public $author;
+
         public function __construct(){
             $this->author = new Author();
         }
-        public function loginView(){
-            include_once "views/auth/login.php";
+
+        public function index(){
+            include PROJECT_ROOT_PATH . "/views/users/profile.php";
         }
-        public function registerVIew(){
-            include_once "views/auth/register.php";
-        }
+
         public function login(){
             $flag = false;
             if (isset($_POST['login'])) {
@@ -30,11 +30,11 @@
                         $stmt->execute();
 
                         $count = $stmt->rowCount();
-                        $row   = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+
                         if ($count == 1 && !empty($row)) {
-                            $flag = true;
                             // if (password_verify($password, $row['password'])) {
-                                // $flag = true;
+                                $flag = true;
                             // } else {
                                 // $msg = "Email or password is incorrect. Plese try again!";
                             // }
@@ -48,13 +48,20 @@
             }
 
             if ($flag) {
-                $_SESSION['isLogin'] = true;
-                header('Location: ?mod=account&act=profile');
+                $profile = $this->author->findByEmail($row['email']);
+                $_SESSION['is_login'] = true;
+                $_SESSION['user_login'] = $profile;
+                header('location: ?mod=account&act=profile');
             } else {
                 include "views/auth/login.php";
             }
         }
-        
+
+        public function logout(){
+            session_destroy();
+            header('location: ?view=login');
+        }
+
         public function register(){
             if (isset($_POST['register'])) {
                 $flag = true;
@@ -98,8 +105,8 @@
                     $last_name = trim($_POST['last-name']);
                     $first_name = trim($_POST['first-name']);
                     $email = trim($_POST['email']);
-                    // $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                    $password = $_POST['password'];
+                    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                    // $password = $_POST['password'];
                     $job_title = isset($_POST['job_title'])?$_POST['job_title']:"";
                     $company_name = isset($_POST['company_name'])?$_POST['company_name']:"";
                     try {

@@ -149,7 +149,9 @@ a {
     color: #666;
     padding: 5px 0;
 }
-
+.info-contact .info-title{
+    position: absolute;
+}
 /* Container Body > body-detail */
 .list{
     padding: 20px 0;

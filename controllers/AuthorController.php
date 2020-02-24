@@ -13,31 +13,37 @@
             include PROJECT_ROOT_PATH . "/views/users/profile.php";
         }
 
+        public function checkSpecialChar($data){
+            if (preg_match("/[\'^£$%&*()}{@#~?><>,|=_+¬-]/", $data)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
         public function login(){
             $flag = false;
             if (isset($_POST['login'])) {
                 if($_POST['email'] == "" || $_POST['password'] == ""){
                     $msg = "Empty email or password. Please try again!";
-                } elseif(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i", $_POST['email'])) {
+                } elseif(!filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL)) {
                     $msg = "Email special characters not allowed";
                 } else {    
                     $email = trim($_POST['email']);
                     $password = trim($_POST['password']);
                     try {
-                        $stmt = $this->author->author_conn->prepare("SELECT * FROM users WHERE email = :email AND password = :password");
+                        $stmt = $this->author->author_conn->prepare("SELECT * FROM users WHERE email = :email");
                         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-                        $stmt->bindParam(':password', $password, PDO::PARAM_STR);
                         $stmt->execute();
 
                         $count = $stmt->rowCount();
                         $row  = $stmt->fetch(PDO::FETCH_ASSOC);
 
                         if ($count == 1 && !empty($row)) {
-                            // if (password_verify($password, $row['password'])) {
+                            if (password_verify($password, $row['password'])) {
                                 $flag = true;
-                            // } else {
-                                // $msg = "Email or password is incorrect. Plese try again!";
-                            // }
+                            } else {
+                                $msg = "Email or password is incorrect. Plese try again!";
+                            }
                         } else {
                             $msg = "Email or password is incorrect. Plese try again!";
                         }
@@ -67,10 +73,13 @@
                 if ($_POST['username'] == "" || $_POST['first-name'] == "" || $_POST['last-name'] == "" || $_POST['email'] == "" || $_POST['password'] == "" || $_POST['confirm-password'] == "") {
                     $flag = false;
                     $msg = "Empty some required feilds. Please try again!";
-                } elseif (!preg_match("/^[a-zA-Z]*$/", trim($_POST['first-name'])) || !preg_match("/^[a-zA-Z]*$/", trim($_POST['last-name']))) {
+                } elseif ($this->checkSpecialChar($_POST['first-name']) || $this->checkSpecialChar($_POST['last-name'])) {
                     $flag = false;
                     $msg = "Fist name and last name mustn't have special characters. Please try again.";
-                } elseif (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i", $_POST['email'])) {
+                } elseif ($this->checkSpecialChar($_POST['username'])) {
+                    $flag = false;
+                    $msg = "Username mustn't habe special character. Please try again.";
+                } elseif (!filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL)) {
                     $flag = false;
                     $msg = "Email special characters not allowed. Please try again.";
                 } elseif ($_POST['password'] !== $_POST['confirm-password']) {
@@ -138,28 +147,29 @@
                 );
                 
                 // Check file type
-                $allowed = array('png', 'jpg');
-                $file = $_FILES['avatar'];
-                // $filename = $file['name'];
-                $filename = time().'_'.rand(100,999).'.png';
-                $ext = pathinfo($filename, PATHINFO_EXTENSION);
-
-                if (!in_array($ext, $allowed)) {
-                    $msg = 'Only allow .jpg and .png files only';
-                } else {
-                    // Save image to upload
-                    move_uploaded_file($file['tmp_name'], "upload/avatars/".$filename);
-                    $data['avatar'] = $filename;
-
-                    // Update data to database
-                    $result = $this->author->update($id, $data);
-                    if ($result) {
-                        $_SESSION['user_login'] = $this->author->findByEmail($result['email']);
-                        header('location: ?mod=account&act=index');
+                if ($_FILES['avatar']['error'] <= 0) {
+                    // print_r($_FILES['avatar']);
+                    $allowed = array('png', 'jpg');
+                    $file = $_FILES['avatar'];
+                    $filename = time().'_'.rand(100,999).'.png';
+                    $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+                    
+                    if (!in_array($ext, $allowed)) {
+                        $msg = 'Only allow .jpg and .png files only';
                     } else {
-                        $msg = "Some things went wrong. Please try again.";
+                        // Save image to upload
+                        move_uploaded_file($file['tmp_name'], "upload/avatars/".$filename);
+                        $data['avatar'] = $filename;
                     }
-                };
+                }
+                // Update data to database
+                $result = $this->author->update($id, $data);
+                if ($result) {
+                    $_SESSION['user_login'] = $this->author->findByEmail($result['email']);
+                    header('location: ?mod=account&act=index');
+                } else {
+                    $msg = "Some things went wrong. Please try again.";
+                }
             }
         }
     }

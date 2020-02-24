@@ -77,7 +77,7 @@
                     <div class="info-name"><?php echo $user['last_name'] . ' ' . $user['first_name'] ?></div>
                     <div class="info-position">
                         <?php echo $user['job_title']!=''?$user['job_title']:'(Không có)'; ?> 
-                        &nbsp; - &nbsp; 
+                        &nbsp;·&nbsp; 
                         <?php echo $user['company_name']!=''?$user['company_name']:'(Không có)'; ?>
                     </div>
                     <div class="info-contact">
@@ -268,7 +268,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" class="button btn-cancel" name="cancel" value="Bỏ qua">
+                    <!-- <input type="submit" class="button btn-cancel" name="cancel" value="Bỏ qua"> -->
+                    <!-- <div class="button btn-cancel">Bỏ qua</div> -->
                     <input type="submit" class="button btn-success" name="edit-profile" value="Cập nhật">
                 </div>
             </form>

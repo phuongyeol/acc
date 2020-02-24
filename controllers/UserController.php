@@ -4,7 +4,8 @@
     class UserController
     {
         public $user;
-        public function __construct(){
+        public function __construct() 
+        {
             $this->user = new User();
         }
     }

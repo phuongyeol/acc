@@ -3,7 +3,8 @@
     {
         public $conn;
         
-        public function __construct(){
+        public function __construct() 
+        {
             // Connect to MySQL database
             try {
                 $this->conn = new PDO("mysql:host=localhost;dbname=base_account", "root", "");

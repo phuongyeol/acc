@@ -5,25 +5,30 @@
     {
         public $author;
 
-        public function __construct(){
+        public function __construct() 
+        {
             $this->author = new Author();
         }
 
-        public function index(){
+        public function index() 
+        {
             include PROJECT_ROOT_PATH . "/views/users/profile.php";
         }
 
-        public function checkSpecialChar($data){
+        public function checkSpecialChar($data) 
+        {
             if (preg_match("/[\'^£$%&*()}{@#~?><>,|=_+¬-]/", $data)) {
                 return true;
             } else {
                 return false;
             }
         }
-        public function login(){
+
+        public function login() 
+        {
             $flag = false;
             if (isset($_POST['login'])) {
-                if($_POST['email'] == "" || $_POST['password'] == ""){
+                if($_POST['email'] == "" || $_POST['password'] == "") {
                     $msg = "Empty email or password. Please try again!";
                 } elseif(!filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL)) {
                     $msg = "Email special characters not allowed";
@@ -62,12 +67,14 @@
             }
         }
 
-        public function logout(){
+        public function logout() 
+        {
             session_destroy();
             header('location: ?view=login');
         }
 
-        public function register(){
+        public function register() 
+        {
             if (isset($_POST['register'])) {
                 $flag = true;
                 if ($_POST['username'] == "" || $_POST['first-name'] == "" || $_POST['last-name'] == "" || $_POST['email'] == "" || $_POST['password'] == "" || $_POST['confirm-password'] == "") {
@@ -135,7 +142,8 @@
             }
         }
 
-        public function edit(){
+        public function edit() 
+        {
             if (isset($_POST['edit-profile'])) {
                 // Get data
                 $id = $_GET['id'];

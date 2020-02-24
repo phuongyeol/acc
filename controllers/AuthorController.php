@@ -48,10 +48,9 @@
             }
 
             if ($flag) {
-                $profile = $this->author->findByEmail($row['email']);
                 $_SESSION['is_login'] = true;
-                $_SESSION['user_login'] = $profile;
-                header('location: ?mod=account&act=profile');
+                $_SESSION['user_login'] = $this->author->findByEmail($row['email']);
+                header('location: ?mod=account&act=index');
             } else {
                 include "views/auth/login.php";
             }
@@ -124,6 +123,43 @@
                 } else {
                     include "views/auth/register.php";
                 }
+            }
+        }
+
+        public function edit(){
+            if (isset($_POST['edit-profile'])) {
+                // Get data
+                $id = $_GET['id'];
+                $data = array(
+                    'first_name' => $_POST['first_name'],
+                    'last_name' => $_POST['last_name'],
+                    'job_title' => $_POST['job_title'],
+                    'company_name' => $_POST['company_name'],
+                );
+                
+                // Check file type
+                $allowed = array('png', 'jpg');
+                $file = $_FILES['avatar'];
+                // $filename = $file['name'];
+                $filename = time().'_'.rand(100,999).'.png';
+                $ext = pathinfo($filename, PATHINFO_EXTENSION);
+
+                if (!in_array($ext, $allowed)) {
+                    $msg = 'Only allow .jpg and .png files only';
+                } else {
+                    // Save image to upload
+                    move_uploaded_file($file['tmp_name'], "upload/avatars/".$filename);
+                    $data['avatar'] = $filename;
+
+                    // Update data to database
+                    $result = $this->author->update($id, $data);
+                    if ($result) {
+                        $_SESSION['user_login'] = $this->author->findByEmail($result['email']);
+                        header('location: ?mod=account&act=index');
+                    } else {
+                        $msg = "Some things went wrong. Please try again.";
+                    }
+                };
             }
         }
     }

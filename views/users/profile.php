@@ -6,21 +6,25 @@
     <title>Base Account</title>
     <link rel="shortcut icon" href="public/images/base-icon.png" type="image/x-icon">
     <link rel="stylesheet" href="public/css/style.css">
-    <link rel="stylesheet" href="public/css/account.css">
+    <link rel="stylesheet" href="public/css/profile.css">
     <!-- Load an icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <?php $profile = $_SESSION['user_login'] ?>
+    <?php $user = $_SESSION['user_login'] ?>
     <!-- LEFT BAR -->
     <div class="left-bar">
         <div class="lbar">
             <div class="lbar-row lbar-avatar">
-                <img src="public/images/avatar_default.png" class="" alt="">
+                <?php if ($user['avatar'] != '') { ?>
+                    <img src="upload/avatars/<? echo $user['avatar']; ?>">
+                <?php } else {?>
+                    <img src="public/images/avatar_default.png">
+                <?php } ?>
             </div>
             <div class="lbar-row profile">
                 <div class="lbar-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></div>
-                <div class="lbar-title"><a href="#">Cá nhân</a></div>
+                <div class="lbar-title"><a href="?mod=account&act=profile">Cá nhân</a></div>
             </div>
             <div class="lbar-row members">
                 <div class="lbar-icon"><i class="fa fa-users" aria-hidden="true"></i></div>
@@ -50,27 +54,35 @@
             <div class="top-icon"><i class="fa fa-arrow-left" aria-hidden="true"></i></div>
             <div class="top-title">
                 <div class="top-account">TÀI KHOẢN</div>
-                <div class="top-name"><?php echo $profile['last_name'] . ' ' . $profile['first_name'] ?></div>
+                <div class="top-name"><?php echo $user['last_name'] . ' ' . $user['first_name'] ?></div>
             </div>
             <div class="top-act">
-                <i class="fa fa-arrow-up" aria-hidden="true"></i>
-                &nbsp; Chỉnh sửa tài khoản
+                <button id="myBtn">
+                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                    &nbsp; Chỉnh sửa tài khoản
+                </button>
             </div>
         </div>
         
         <div class="container-body">
             <div class="body-info">
-                <div class="info-avatar"><img src="public/images/avatar_default.png" alt=""></div>
+                <div class="info-avatar">
+                    <?php if ($user['avatar'] != '') { ?>
+                        <img src="upload/avatars/<? echo $user['avatar']; ?>">
+                    <?php } else {?>
+                        <img src="public/images/avatar_default.png">
+                    <?php } ?>
+                </div>
                 <div class="info-detail">
-                    <div class="info-name"><?php echo $profile['last_name'] . ' ' . $profile['first_name'] ?></div>
+                    <div class="info-name"><?php echo $user['last_name'] . ' ' . $user['first_name'] ?></div>
                     <div class="info-position">
-                        <?php echo $profile['job_title']!=''?$profile['job_title']:'(Không có)'; ?> 
+                        <?php echo $user['job_title']!=''?$user['job_title']:'(Không có)'; ?> 
                         &nbsp; - &nbsp; 
-                        <?php echo $profile['company_name']!=''?$profile['company_name']:'(Không có)'; ?>
+                        <?php echo $user['company_name']!=''?$user['company_name']:'(Không có)'; ?>
                     </div>
                     <div class="info-contact">
                         <div class="info-title">Địa chỉ email</div>
-                        <div class="info-detail"><?php echo $profile['email']; ?></div>
+                        <div class="info-detail"><?php echo $user['email']; ?></div>
                     </div>
                     <div class="info-contact">Số điện thoại</div>
                 </div>
@@ -136,9 +148,9 @@
     <!-- RIGHT BAR -->
     <div class="right-bar">
         <div class="rbar-top">
-            <div class="top-name"><?php echo $profile['last_name'] . ' ' . $profile['first_name'] ?></div>
+            <div class="top-name"><?php echo $user['last_name'] . ' ' . $user['first_name'] ?></div>
             <div class="top-subname">
-                <?php echo $profile['username']; ?> &nbsp;·&nbsp; <?php echo $profile['email']; ?>
+                <?php echo $user['username']; ?> &nbsp;·&nbsp; <?php echo $user['email']; ?>
             </div>
         </div>
         <div class="rbar-menu">
@@ -214,5 +226,77 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <b>CHỈNH SỬA THÔNG TIN CÁ NHÂN</b>
+            </div>
+            <form action="?mod=account&act=edit&id=<?php echo $user['id'] ?>" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="modal-row">
+                        <div class="modal-title"><b>Tên của bạn:</b></div>
+                        <div class="modal-input">
+                            <input type="text" name="first_name" id="first_name" value="<? echo $user['first_name'] ?>">
+                        </div>
+                    </div>
+                    <div class="modal-row">
+                        <div class="modal-title"><b>Họ của bạn:</b></div>
+                        <div class="modal-input">
+                            <input type="text" name="last_name" id="last_name" value="<? echo $user['last_name']?>">
+                        </div>
+                    </div>
+                    <div class="modal-row">
+                        <div class="modal-title"><b>Ảnh đại diện:</b></div>
+                        <div class="modal-input">
+                            <input type="file" name="avatar" id="avatar" value="">
+                        </div>
+                    </div>
+                    <div class="modal-row">
+                        <div class="modal-title"><b>Vị trí công việc:</b></div>
+                        <div class="modal-input">
+                            <input type="text" name="job_title" id="job_title" value="<? echo $user['job_title']?>">
+                        </div>
+                    </div>
+                    <div class="modal-row">
+                        <div class="modal-title"><b>Công ty:</b></div>
+                        <div class="modal-input">
+                            <input type="text" name="company_name" id="company_name" value="<? echo $user['company_name'] ?>">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="button btn-cancel" name="cancel" value="Bỏ qua">
+                    <input type="submit" class="button btn-success" name="edit-profile" value="Cập nhật">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>

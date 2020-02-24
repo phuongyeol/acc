@@ -18,5 +18,30 @@
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             return $user;
         }
+
+        public function findById($id){
+            $stmt = $this->author_conn->prepare("SELECT * FROM users WHERE id = :id");
+            $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $user;
+        }
+
+        public function update($id, $data){
+            $stmt = $this->author_conn->prepare("UPDATE users SET first_name = :first_name, last_name = :last_name, avatar = :avatar, 
+            job_title = :job_title, company_name = :company_name WHERE id = :id");
+            print_r($data);
+            $stmt->bindParam(':first_name', $data['first_name'], PDO::PARAM_STR);
+            $stmt->bindParam(':last_name', $data['last_name'], PDO::PARAM_STR);
+            $stmt->bindParam(':avatar', $data['avatar'], PDO::PARAM_STR);
+            $stmt->bindParam(':job_title', $data['job_title'], PDO::PARAM_STR);
+            $stmt->bindParam(':company_name', $data['company_name'], PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $user = $this->findById($id);
+            return $user;
+        }
     }
 ?>

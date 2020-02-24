@@ -27,8 +27,11 @@
         switch ($mod) {
             case 'account':
                 switch ($act) {
-                    case 'profile':
+                    case 'index':
                         $author->index();
+                        break;
+                    case 'edit':
+                        $author->edit();
                         break;
                     case 'logout':
                         $author->logout();
@@ -76,10 +79,11 @@
             case 'register':
                 $author->register();
                 break;
-            case 'author':
-                $author->login();
-                break;
+            // case 'author':
+            //     $author->login();
+            //     break;
             default:
+                $author->login();
                 break;
         }
     }

@@ -86,7 +86,7 @@
                 } elseif ($this->checkSpecialChar($_POST['username'])) {
                     $flag = false;
                     $msg = "Username mustn't habe special character. Please try again.";
-                } elseif (!filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                } elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                     $flag = false;
                     $msg = "Email special characters not allowed. Please try again.";
                 } elseif ($_POST['password'] !== $_POST['confirm-password']) {
@@ -126,7 +126,7 @@
                     $company_name = isset($_POST['company_name'])?$_POST['company_name']:"";
                     try {
                         $stmt = $this->author->author_conn->prepare("INSERT INTO users (username, first_name, last_name, email, password, job_title, company_name) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                        $data = [ $username, $first_name, $last_name, $email, $password, $job_title, $company_name ];
+                        $data = [$username, $first_name, $last_name, $email, $password, $job_title, $company_name];
                         $result = $stmt->execute($data);
                         // Result
                         if ($result) {
@@ -154,30 +154,37 @@
                     'company_name' => $_POST['company_name'],
                 );
                 
-                // Check file type
-                if ($_FILES['avatar']['error'] <= 0) {
-                    // print_r($_FILES['avatar']);
-                    $allowed = array('png', 'jpg');
-                    $file = $_FILES['avatar'];
-                    $filename = time().'_'.rand(100,999).'.png';
-                    $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-                    
-                    if (!in_array($ext, $allowed)) {
-                        $msg = 'Only allow .jpg and .png files only';
+                if ($this->checkSpecialChar($data['first_name']) || $this->checkSpecialChar($data['last_name']) || $this->checkSpecialChar($data['job_title']) 
+                || $this->checkSpecialChar($data['company_name'])) {
+                    $msg = "Special characters not allowed. Please try again.";
+                    print_r($msg);
+                } else {
+                    // Check file type
+                    if ($_FILES['avatar']['error'] <= 0) {
+                        // print_r($_FILES['avatar']);
+                        $allowed = array('png', 'jpg');
+                        $file = $_FILES['avatar'];
+                        $filename = time().'_'.rand(100,999).'.png';
+                        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+                        
+                        if (!in_array($ext, $allowed)) {
+                            $msg = 'Only allow .jpg and .png files only';
+                        } else {
+                            // Save image to upload
+                            move_uploaded_file($file['tmp_name'], "upload/avatars/".$filename);
+                            $data['avatar'] = $filename;
+                        }
+                    }
+                    // Update data to database
+                    $result = $this->author->update($id, $data);
+                    if ($result) {
+                        $_SESSION['user_login'] = $this->author->findByEmail($result['email']);
+                        header('location: ?mod=account&act=index');
                     } else {
-                        // Save image to upload
-                        move_uploaded_file($file['tmp_name'], "upload/avatars/".$filename);
-                        $data['avatar'] = $filename;
+                        $msg = "Some things went wrong. Please try again.";
                     }
                 }
-                // Update data to database
-                $result = $this->author->update($id, $data);
-                if ($result) {
-                    $_SESSION['user_login'] = $this->author->findByEmail($result['email']);
-                    header('location: ?mod=account&act=index');
-                } else {
-                    $msg = "Some things went wrong. Please try again.";
-                }
+                
             }
         }
     }

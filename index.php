@@ -28,10 +28,10 @@
             case 'account':
                 switch ($act) {
                     case 'index':
-                        $author->index();
+                        $user->index();
                         break;
                     case 'edit':
-                        $author->edit();
+                        $user->edit();
                         break;
                     case 'logout':
                         $author->logout();

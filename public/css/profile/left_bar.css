@@ -1,0 +1,39 @@
+/* LEFT BAR STYLE */
+.left-bar{
+    height: 100%;
+    width: 80px;
+    background-color: #302725;
+    position: fixed;
+    z-index:1;
+    top: 0;
+    left:0;
+    overflow-x: hidden;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+}
+.left-bar a{
+    color: #888;
+}
+.lbar-row{
+    padding: 10px 0;
+}
+.lbar-avatar img{
+    width: 30px;
+    border-radius: 50%;
+}
+.lbar-icon{
+    color: #888;
+}
+.lbar-icon{
+    font-size: 20px;
+}
+.lbar-icon i:hover {
+    color: #f1f1f1;
+}
+.lbar-title a:hover {
+    color: #f1f1f1;
+}
+.lbar-logout{
+    margin-top: 400px;
+}

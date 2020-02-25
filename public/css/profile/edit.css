@@ -1,0 +1,82 @@
+
+/* modal */
+.modal{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    border-radius: 4px;
+}
+.modal-dialog{
+    max-width: 600px;;
+    margin:auto;
+    background-color: #fff;
+}
+/* Modal header */
+.modal-header{
+    background-color: #eee;
+    color: #555;
+    padding: 10px 20px;
+}
+.modal-body{
+    padding: 10px 20px;
+}
+.modal-footer{
+    border-top: 1px dotted #ddd;
+    padding: 10px 20px;
+    height: 35px;
+}
+.modal-footer .button{
+    /* width: 48%; */
+    float: left;
+    padding: 10px 20px;
+    margin: 0 5px;
+    text-align: center;
+    border-radius: 5px;
+}
+.btn-success{
+    background-color: #7abd1a;
+    color: #fff;
+    border: none;
+    float: right;
+}
+.btn-cancel{
+    color: #666;
+    background-color: #ddd; 
+    border: none;
+}
+/* The Close Button */
+.close{
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus{
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-row{
+    padding: 10px 0;
+}
+.modal-title{
+    float: left;
+    width: 150px;
+}
+.modal-input input{
+    padding: 5px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 70%;
+}

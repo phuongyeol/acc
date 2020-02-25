@@ -1,0 +1,48 @@
+
+/* RIGHT BAR */
+.right-bar{
+    height: 100%;
+    width: 270px;
+    background-color: #f6f6f6;
+    position: fixed;
+    z-index:1;
+    top: 0;
+    right:0;
+    overflow-x: hidden;
+    padding: 5px 20px;
+}
+
+/* RBAR TOP */
+.rbar-top{
+    height: 40px;
+    padding: 14px 0;
+}
+.top-name{
+    font-size: 22px;
+}
+.top-subname{
+    color: #999;
+}
+/* RBAR CONTENT */
+.rbar-menu{
+    border-top: 1px solid #eee;
+    padding: 10px 0;
+}
+.rbar-row{
+    padding: 8px 0;
+}
+.rbar-title{
+    color: #999;
+    padding: 10px 0;
+    font-size: 14px;
+}
+.rbar-icon{
+    color: #aaa;
+    font-size: 16px;
+    display: inline;
+    margin-right: 5px;
+}
+.rbar-act{
+    color: #555;
+    display: inline;
+}

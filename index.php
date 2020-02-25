@@ -79,6 +79,9 @@
             case 'register':
                 $author->register();
                 break;
+            //  case 'author':
+                //     $author->login();
+                //     break;
             default:
                 $author->login();
                 break;

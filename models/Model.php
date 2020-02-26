@@ -38,6 +38,7 @@
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             return $user;
         }
+        
         /**
          * @desc Search a user by email
          * @param string $email
@@ -52,6 +53,7 @@
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             return $user;
         }
+        
         /**
          * @desc Search a user by username
          * @param string $username

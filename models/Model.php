@@ -10,6 +10,11 @@
             $this->conn = $connection->conn;
         }
 
+        /**
+         * @desc Check some special characters in input feild
+         * @param string $feild
+         * @return boolean
+         */
         public function checkSpecialChar($feild)
         {
             if (preg_match("/[\'^£$%&*()}{@#~?><>,|=_+¬-]/", $feild)) {
@@ -19,6 +24,11 @@
             }
         }
 
+        /**
+         * @desc Search a user by id
+         * @param int $id
+         * @return object 
+         */
         public function findById($id) 
         {
             $stmt = $this->conn->prepare("SELECT * FROM users WHERE id = :id");
@@ -28,7 +38,11 @@
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             return $user;
         }
-
+        /**
+         * @desc Search a user by email
+         * @param string $email
+         * @return object 
+         */
         public function findByEmail($email) 
         {
             $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email");
@@ -38,7 +52,11 @@
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             return $user;
         }
-
+        /**
+         * @desc Search a user by username
+         * @param string $username
+         * @return object 
+         */
         public function findByUsername($username) 
         {
             $stmt = $this->conn->prepare("SELECT * FROM users WHERE username = :username");

@@ -9,11 +9,17 @@
             $this->user = new User();
         }
 
+        /**
+         * @desc Get profile view after user login
+         */
         public function index() 
         {
             include PROJECT_ROOT_PATH . "/views/users/profile.php";
         }
 
+        /**
+         * @desc Update profile
+         */
         public function edit() 
         {
             if (isset($_POST['edit-profile'])) {

@@ -17,6 +17,7 @@
             $user = $this->findByUsername($data["username"]);
             return $user;
         }
+        
         /**
          * @desc Update user edit data to database 
          * @param array $data

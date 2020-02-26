@@ -3,11 +3,14 @@
 
     class User extends Model
     {
-        public function store($id, $data)
+        public function store($data)
         {
-            $stmt = $this->author->conn->prepare("INSERT INTO users (username, first_name, last_name, email, password, job_title, company_name) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $data = [$username, $first_name, $last_name, $email, $password, $job_title, $company_name];
-            $result = $stmt->execute($data);
+            $stmt = $this->conn->prepare("INSERT INTO users (username, first_name, last_name, email, password, job_title, company_name) 
+            VALUES (:username, :first_name, :last_name, :email, :password, :job_title, :company_name)");
+            $stmt->execute($data);
+            
+            $user = $this->findByUsername($data["username"]);
+            return $user;
         }
 
         public function update($id, $data) 

@@ -1,5 +1,6 @@
 <?php
     include_once PROJECT_ROOT_PATH . "/models/Author.php";
+    include_once PROJECT_ROOT_PATH . "/models/User.php";
 
     class AuthorController
     {
@@ -25,7 +26,6 @@
                     $password = trim($_POST['password']);
                     try {
                         $user = $this->author->findByEmail($email);
-
                         if (!empty($user)) {
                             if (password_verify($password, $user['password'])) {
                                 $flag = true;
@@ -94,20 +94,23 @@
                     }
                 } 
                 if ($flag) {
-                    $username = trim($_POST['username']);
-                    $last_name = trim($_POST['last-name']);
-                    $first_name = trim($_POST['first-name']);
-                    $email = trim($_POST['email']);
-                    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                    // $password = $_POST['password'];
-                    $job_title = isset($_POST['job_title'])?$_POST['job_title']:"";
-                    $company_name = isset($_POST['company_name'])?$_POST['company_name']:"";
+                    // Get data
+                    $data = [
+                        "username" => trim($_POST['username']), 
+                        "first_name" => trim($_POST['first-name']), 
+                        "last_name" => trim($_POST['last-name']), 
+                        "email" => trim($_POST['email']), 
+                        "password" => password_hash($_POST['password'], PASSWORD_DEFAULT), 
+                        "job_title" => isset($_POST['job_title'])?$_POST['job_title']:"", 
+                        "company_name" => isset($_POST['company_name'])?$_POST['company_name']:""
+                    ];
                     try {
-                        $stmt = $this->author->conn->prepare("INSERT INTO users (username, first_name, last_name, email, password, job_title, company_name) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                        $data = [$username, $first_name, $last_name, $email, $password, $job_title, $company_name];
-                        $result = $stmt->execute($data);
+                        // Store new user to database
+                        
+                        $user = $this->user->store($data);
+                        
                         // Result
-                        if ($result) {
+                        if ($user) {
                             $notice_success = "Registration successfully completed! Login to start working.";
                             include "views/auth/login.php";
                         }

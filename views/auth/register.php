@@ -19,7 +19,7 @@
             </div>
             <!-- Register body -->
             <div class="body">
-                <form action="?mod=user&act=register" name="register" method="POST">
+                <form action="?act=register" name="register" method="POST">
                     <div class="register-form">
                         <div class="row form-username">
                             <div class="title">

@@ -42,7 +42,7 @@
                         if (!in_array($ext, $allowed)) {
                             $msg = 'Only allow .jpg and .png files only';
                         } else {
-                            // Save image to upload
+                            // Save image to upload folder
                             move_uploaded_file($file['tmp_name'], "upload/avatars/".$filename);
                             $data['avatar'] = $filename;
                         }

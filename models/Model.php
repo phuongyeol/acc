@@ -22,6 +22,16 @@
             }
         }
 
+        public function findById($id) 
+        {
+            $stmt = $this->conn->prepare("SELECT * FROM users WHERE id = :id");
+            $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $user;
+        }
+
         public function findByEmail($email) 
         {
             $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email");
@@ -36,16 +46,6 @@
         {
             $stmt = $this->conn->prepare("SELECT * FROM users WHERE username = :username");
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-            $stmt->execute();
-
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $user;
-        }
-
-        public function findById($id) 
-        {
-            $stmt = $this->conn->prepare("SELECT * FROM users WHERE id = :id");
-            $stmt->bindParam(':id', $id, PDO::PARAM_STR);
             $stmt->execute();
 
             $user = $stmt->fetch(PDO::FETCH_ASSOC);

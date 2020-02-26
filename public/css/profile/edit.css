@@ -53,14 +53,14 @@
     border: none;
 }
 /* The Close Button */
-.close{
+.edit-close{
     float: right;
     font-size: 20px;
     font-weight: bold;
 }
   
-.close:hover,
-.close:focus{
+.edit-close:hover,
+.edit-close:focus{
     color: #000;
     text-decoration: none;
     cursor: pointer;

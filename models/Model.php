@@ -1,7 +1,4 @@
 <?php 
-	/**
-	* 
-	*/
     include_once 'models/Connection.php';
     
     class Model{
@@ -13,9 +10,9 @@
             $this->conn = $connection->conn;
         }
 
-        public function checkSpecialChar($data)
+        public function checkSpecialChar($feild)
         {
-            if (preg_match("/[\'^£$%&*()}{@#~?><>,|=_+¬-]/", $data)) {
+            if (preg_match("/[\'^£$%&*()}{@#~?><>,|=_+¬-]/", $feild)) {
                 return true;
             } else {
                 return false;

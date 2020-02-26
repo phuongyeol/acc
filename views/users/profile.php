@@ -57,7 +57,7 @@
                 <div class="top-name"><?php echo $user['last_name'] . ' ' . $user['first_name'] ?></div>
             </div>
             <div class="top-act">
-                <button id="myBtn">
+                <button id="editBtn">
                     <i class="fa fa-arrow-up" aria-hidden="true"></i>
                     &nbsp; Chỉnh sửa tài khoản
                 </button>
@@ -228,10 +228,10 @@
     </div>
 
     <!-- Modal -->
-    <div id="myModal" class="modal">
+    <div id="editModal" class="modal">
         <div class="modal-dialog">
             <div class="modal-header">
-                <span class="close">&times;</span>
+                <span class="edit-close">&times;</span>
                 <b>CHỈNH SỬA THÔNG TIN CÁ NHÂN</b>
             </div>
             <form action="?mod=account&act=edit&id=<?php echo $user['id'] ?>" method="post" enctype="multipart/form-data">
@@ -277,27 +277,6 @@
     </div>
 
     <!-- Script -->
-    <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-        // When the user clicks the button, open the modal 
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+    <script src="public/js/profile/edit.js"></script>
 </body>
 </html>

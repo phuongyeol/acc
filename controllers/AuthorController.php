@@ -106,7 +106,6 @@
                     ];
                     try {
                         // Store new user to database
-                        
                         $user = $this->user->store($data);
                         
                         // Result

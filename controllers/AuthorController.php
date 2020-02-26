@@ -13,6 +13,9 @@
             $this->user = new User();
         }
         
+        /**
+         * @desc Customer login to system
+         */
         public function login() 
         {
             $flag = false;
@@ -50,12 +53,18 @@
             }
         }
 
+        /**
+         * @desc User logout from system
+         */
         public function logout() 
         {
             session_destroy();
             header('location: ?view=login');
         }
 
+        /**
+         * @desc Customer create new account
+         */
         public function register() 
         {
             if (isset($_POST['register'])) {

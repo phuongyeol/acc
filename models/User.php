@@ -3,6 +3,11 @@
 
     class User extends Model
     {
+        /**
+         * @desc Store user register data to database
+         * @param array $data
+         * @return object $user
+         */
         public function store($data)
         {
             $stmt = $this->conn->prepare("INSERT INTO users (username, first_name, last_name, email, password, job_title, company_name) 
@@ -12,7 +17,11 @@
             $user = $this->findByUsername($data["username"]);
             return $user;
         }
-
+        /**
+         * @desc Update user edit data to database 
+         * @param array $data
+         * @return object $user
+         */
         public function update($id, $data) 
         {
             $stmt = $this->conn->prepare("UPDATE users SET first_name = :first_name, last_name = :last_name,
